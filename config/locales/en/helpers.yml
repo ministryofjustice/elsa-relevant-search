@@ -1,0 +1,9 @@
+---
+en:
+  shared:
+    back_link: Back
+
+  helpers:
+    buttons:
+      continue: Continue
+      start_again: Start again
