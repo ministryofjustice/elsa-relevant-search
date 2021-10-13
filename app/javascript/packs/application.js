@@ -4,5 +4,7 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-
 Rails.start()
+
+import { initAll } from 'govuk-frontend'
+initAll()
