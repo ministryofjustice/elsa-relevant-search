@@ -1,17 +1,24 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.2'
+ruby File.read('.ruby-version').chomp
 
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'pg'
 gem 'puma'
-gem 'sass-rails', '>= 6'
 gem 'sentry-raven', '~> 3.0'
+
+# Assets management
 gem 'webpacker', '~> 5.0'
+gem 'turbolinks', '~> 5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+
+group :production do
+  gem 'lograge'
+  gem 'logstash-event'
+end
 
 group :development, :test do
   gem 'dotenv-rails'
