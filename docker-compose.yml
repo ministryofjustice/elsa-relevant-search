@@ -1,0 +1,26 @@
+# Simplify running the application inside a container locally.
+# Usage: `docker-compose up`
+#
+# Do not use docker-compose in production environments.
+#
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+
+  web:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://postgres@db/elsa-relevant-search
+      EXTERNAL_URL: http://localhost:3000
+      SECRET_KEY_BASE: 109c9e83f89d0baaab77fbbb246729cb3dd1a35b6a920ab098f1fd5cfc18aa78
+      RAILS_SERVE_STATIC_FILES: "1"
+      DATABASE_SSLMODE: disable
+      DISABLE_HTTPS: "1"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db

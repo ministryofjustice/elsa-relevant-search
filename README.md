@@ -37,3 +37,14 @@ Or you can run specific tests as follows (refer to *lib/tasks/all_tests.rake* fo
 * `rake spec`
 * `rake brakeman`
 * `rake rubocop`
+
+## Docker
+
+The application can be run inside a docker container. This will take care of the ruby environment, postgres database 
+and any other dependency for you, without having to configure anything in your machine.
+
+* `docker-compose up`
+
+The application will be run in "production" mode, so will be as accurate as possible to the real production environment.
+
+**NOTE:** never use `docker-compose` for a real production environment. This is only provided to test a local container.
