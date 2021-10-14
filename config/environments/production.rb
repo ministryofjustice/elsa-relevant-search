@@ -3,6 +3,24 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_view.logger = nil
+
+  config.lograge.logger = ActiveSupport::Logger.new(STDOUT)
+  config.lograge.formatter = Lograge::Formatters::Logstash.new
+  config.lograge.enabled = true
+
+  config.lograge.custom_options = lambda do |event|
+    exceptions = %w(controller action format id)
+    {
+      host: event.payload[:host],
+      params: event.payload[:params].except(*exceptions),
+      referrer: event.payload[:referrer],
+      session_id: event.payload[:session_id],
+      user_agent: event.payload[:user_agent],
+      tags: %w{elsa-relevant-search}
+    }
+  end
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -36,7 +54,7 @@ Rails.application.configure do
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
-  config.log_level = :info
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
