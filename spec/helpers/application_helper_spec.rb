@@ -10,12 +10,12 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context 'for a blank value' do
       let(:value) { '' }
-      it { expect(title).to eq('Find relevant information about legal problems - GOV.UK') }
+      it { expect(title).to eq('Search information about legal problems - GOV.UK') }
     end
 
     context 'for a provided value' do
       let(:value) { 'Test page' }
-      it { expect(title).to eq('Test page - Find relevant information about legal problems - GOV.UK') }
+      it { expect(title).to eq('Test page - Search information about legal problems - GOV.UK') }
     end
   end
 
