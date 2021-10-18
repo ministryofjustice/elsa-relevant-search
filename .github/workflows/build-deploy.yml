@@ -15,21 +15,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Store current date
+        run: echo "BUILD_DATE=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
+
       - name: Build
         run: |
-          echo "BUILD_DATE=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
           docker build \
             --label build.git.sha=${{ github.sha }} \
-            --label build.git.branch=${{ github.head_ref }} \
+            --label build.git.branch=${{ github.ref }} \
             --label build.date=${{ env.BUILD_DATE }} \
             --build-arg APP_BUILD_DATE=${{ env.BUILD_DATE }} \
-            --build-arg APP_BUILD_TAG=${{ github.head_ref }} \
+            --build-arg APP_BUILD_TAG=${{ github.ref }} \
             --build-arg APP_GIT_COMMIT=${{ github.sha }} \
             -t app .
 
       - name: Push to ECR
         id: ecr
-        uses: jwalton/gh-ecr-push@v1
+        uses: jwalton/gh-ecr-push@dc79198ca45d6a64d3b0ed48d29ef93dc4adf77c
         with:
           access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
