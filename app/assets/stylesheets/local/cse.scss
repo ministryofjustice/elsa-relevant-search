@@ -1,0 +1,83 @@
+// Google custom search
+//
+.gsc-control-cse {
+  padding-left: 0 !important;
+}
+
+.gsc-resultsbox-visible {
+  margin-top: 20px;
+}
+
+.gs-per-result-labels {
+  margin-top: 5px;
+  color: $govuk-secondary-text-colour;
+
+  a.gs-label {
+    color: $govuk-secondary-text-colour !important;
+  }
+}
+
+.gsc-tabHeader {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.gs-visibleUrl-breadcrumb {
+  visibility: hidden;
+}
+
+a.gs-title {
+  @include govuk-typography-common;
+  @include govuk-link-decoration;
+
+  font-size: 19px !important;
+
+  b {
+    font-size: 19px !important;
+  }
+
+  &:focus {
+    @include govuk-focused-text;
+
+    b {
+      color: $govuk-focus-text-colour;
+      background-color: $govuk-focus-colour;
+    }
+  }
+
+  &:hover, &:focus {
+    @include govuk-link-hover-decoration;
+
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
+
+.gsc-table-cell-snippet-close {
+  @extend .govuk-body;
+  margin-bottom: 10px;
+  font-size: 16px !important;
+}
+
+.gsc-cursor-box {
+  padding-top: 20px;
+  padding-bottom: 15px;
+}
+
+.gsc-cursor-page {
+  border: 1px solid $govuk-border-colour;
+  padding: 8px;
+  margin-right: 12px;
+}
+
+.gcsc-more-maybe-branding-root a {
+  font-size: 16px !important;
+}
+
+.gcsc-find-more-on-google-branding {
+  display: none !important;
+}
+
+.gsc-cursor {
+  font-size: 16px !important;
+}

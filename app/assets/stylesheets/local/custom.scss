@@ -1,5 +1,18 @@
 // App-specific custom styles and overrides
 //
-.no-italic {
-  font-style: normal;
+.app--js-enabled-show {
+  display: none;
+}
+
+.js-enabled {
+  .app--js-enabled-show {
+    display: unset;
+  }
+}
+
+ul.app--query-examples {
+  li {
+    display: inline;
+    margin-right: govuk-spacing(2);
+  }
 }

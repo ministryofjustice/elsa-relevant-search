@@ -1,3 +1,23 @@
 en:
   service:
     name: Search information about legal problems
+
+  home:
+    index:
+      lead: Enter the word or phrase that best describes your problem. You can also click on a common search term below.
+      intro: |
+        Your search results will only be from the government and organisations that have been carefully chosen to give you
+        the most relevant information, for example, Citizens Advice, Shelter and the Money Advice Service. All results are advert-free.
+
+      no_javascript:
+        warning: |
+          JavaScript is either disabled or not supported by your browser. To use this service, enable JavaScript by changing
+          your browser settings and reloading this page.
+        other_links_html: |
+          <p class="govuk-body">You can visit the following organisations as an alternative:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li><a href="https://www.citizensadvice.org.uk" rel="external">Citizen’s Advice</a></li>
+            <li><a href="https://www.advicenow.org.uk" rel="external">AdviceNow</a></li>
+          </ul>
+
+      quick_search_heading: Common search terms
