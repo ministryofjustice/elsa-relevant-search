@@ -16,7 +16,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     env:
-      KUBE_NAMESPACE: elsa-relevant-search-production
+      KUBE_NAMESPACE: ${{ secrets.KUBE_PROD_NAMESPACE }}
 
     steps:
       - name: Pull from ECR
@@ -42,9 +42,9 @@ jobs:
 
       - name: Authenticate to the cluster
         env:
-          KUBE_CERT: ${{ secrets.KUBE_CERT }}
-          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
+          KUBE_CERT: ${{ secrets.KUBE_PROD_CERT }}
+          KUBE_TOKEN: ${{ secrets.KUBE_PROD_TOKEN }}
+          KUBE_CLUSTER: ${{ secrets.KUBE_PROD_CLUSTER }}
         run: |
           echo "${KUBE_CERT}" > ca.crt
           kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://api.${KUBE_CLUSTER}

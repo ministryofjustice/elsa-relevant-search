@@ -104,7 +104,7 @@ jobs:
     needs: build
 
     env:
-      KUBE_NAMESPACE: elsa-relevant-search-staging
+      KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
 
     steps:
       - name: Authenticate to the cluster
