@@ -1,8 +1,5 @@
 name: Deploy to production
 on:
-  workflow_dispatch:
-    branches:
-      - main
   workflow_run:
     workflows: ["CI and CD"]
     branches:
@@ -23,8 +20,8 @@ jobs:
 
     steps:
       - name: Pull from ECR
-        id: ecr
-        uses: jwalton/gh-ecr-push@dc79198ca45d6a64d3b0ed48d29ef93dc4adf77c
+        id: ecr-pull
+        uses: jwalton/gh-ecr-push@v1
         with:
           access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
@@ -34,8 +31,8 @@ jobs:
           image: ${{ secrets.ECR_NAME }}:${{ github.sha }}
 
       - name: Push to ECR
-        id: ecr
-        uses: jwalton/gh-ecr-push@dc79198ca45d6a64d3b0ed48d29ef93dc4adf77c
+        id: ecr-push
+        uses: jwalton/gh-ecr-push@v1
         with:
           access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
