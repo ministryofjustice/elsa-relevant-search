@@ -1,0 +1,62 @@
+name: Deploy to production
+on:
+  workflow_dispatch:
+    branches:
+      - main
+  workflow_run:
+    workflows: ["CI and CD"]
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment: production
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    env:
+      KUBE_NAMESPACE: elsa-relevant-search-production
+
+    steps:
+      - name: Pull from ECR
+        id: ecr
+        uses: jwalton/gh-ecr-push@dc79198ca45d6a64d3b0ed48d29ef93dc4adf77c
+        with:
+          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
+          region: eu-west-2
+          direction: pull
+          local-image: app
+          image: ${{ secrets.ECR_NAME }}:${{ github.sha }}
+
+      - name: Push to ECR
+        id: ecr
+        uses: jwalton/gh-ecr-push@dc79198ca45d6a64d3b0ed48d29ef93dc4adf77c
+        with:
+          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
+          region: eu-west-2
+          local-image: app
+          image: ${{ secrets.ECR_NAME }}:production.latest
+
+      - name: Authenticate to the cluster
+        env:
+          KUBE_CERT: ${{ secrets.KUBE_CERT }}
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
+        run: |
+          echo "${KUBE_CERT}" > ca.crt
+          kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://api.${KUBE_CLUSTER}
+          kubectl config set-credentials deploy-user --token=${KUBE_TOKEN}
+          kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=deploy-user --namespace=${KUBE_NAMESPACE}
+          kubectl config use-context ${KUBE_CLUSTER}
+
+      - name: Rollout restart deployment
+        run: |
+          kubectl set image -n ${KUBE_NAMESPACE} \
+          deployment/elsa-relevant-search-deployment-production \
+          webapp="${{ secrets.ECR_URL }}:${{ github.sha }}"
