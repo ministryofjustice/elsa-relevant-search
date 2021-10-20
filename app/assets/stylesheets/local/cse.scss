@@ -58,37 +58,38 @@ button.gsc-search-button {
   }
 }
 
-a.gs-title {
+div.gs-snippet {
+  @extend .govuk-body;
+
+  font-size: 18px !important;
+  margin-bottom: 10px;
+}
+
+div.gsc-results a.gs-title {
   @include govuk-typography-common;
   @include govuk-link-decoration;
+
+  &:hover {
+    @include govuk-link-hover-decoration;
+  }
+
+  &:focus {
+    @include govuk-focused-text;
+
+    color: $govuk-focus-text-colour !important;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+
+    b {
+      color: $govuk-focus-text-colour !important;
+    }
+  }
 
   font-size: 19px !important;
 
   b {
     font-size: 19px !important;
   }
-
-  &:focus {
-    @include govuk-focused-text;
-
-    b {
-      color: $govuk-focus-text-colour;
-      background-color: $govuk-focus-colour;
-    }
-  }
-
-  &:hover, &:focus {
-    @include govuk-link-hover-decoration;
-
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-  }
-}
-
-.gsc-table-cell-snippet-close {
-  @extend .govuk-body;
-  margin-bottom: 10px;
-  font-size: 16px !important;
 }
 
 .gsc-cursor-box {
