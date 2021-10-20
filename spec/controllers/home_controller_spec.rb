@@ -3,8 +3,12 @@ require 'rails_helper'
 RSpec.describe HomeController do
   describe '#index' do
     it 'renders the expected page' do
+      expect(CommonTerms).to receive(:new).with(locale: 'en').and_return('foobar')
+
       get :index
+
       expect(response).to render_template(:index)
+      expect(assigns[:common_terms]).to eq('foobar')
     end
   end
 

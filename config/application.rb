@@ -30,5 +30,10 @@ module ElsaRelevantSearch
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Load the common search terms configuration
+    config.x.common_terms = YAML.load_file(
+      File.join(Rails.root, 'config', 'common_terms.yml')
+    )
   end
 end
