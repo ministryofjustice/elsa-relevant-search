@@ -1,0 +1,36 @@
+# This file is used to maintain a categorised list of common search terms
+# for users to perform quick search actions.
+#
+# There can be any number of categories with any number of terms inside.
+#
+# The order and letter case defined here will be maintained.
+# It also supports localisation, but for now there is only english.
+#
+en:
+  'Benefits':
+    - housing benefit
+    - child benefit
+    - benefit cap
+    - challenging benefit decisions
+    - appealing benefit sanctions
+  'Debt':
+    - debt advice
+    - debt relief
+    - bankruptcy
+    - loan sharks
+    - court letters for debt
+    - demands for debt repayments
+  'Employment':
+    - pension disputes
+    - unfair dismissal
+    - discrimination at work
+    - harassment
+    - working conditions
+    - reasonable adjustments for disabilities
+  'Housing and homelessness':
+    - estate agent and landlord disputes
+    - housing repairs
+    - rent arrears
+    - eviction
+    - being made homeless
+    - housing ombudsman

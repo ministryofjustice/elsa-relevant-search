@@ -1,0 +1,11 @@
+<p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">
+  <%= quick_search_group.category %>
+</p>
+
+<ul class="govuk-list app--query-examples">
+  <% quick_search_group.terms.each do |term| %>
+    <li>
+      <a href="#gsc.q=<%= ERB::Util.url_encode(term) %>"><%= term %></a>
+    </li>
+  <% end %>
+</ul>
