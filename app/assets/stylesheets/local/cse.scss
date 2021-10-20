@@ -26,6 +26,38 @@
   visibility: hidden;
 }
 
+div.gsc-input-box {
+  border: none;
+
+  td {
+    padding: 0;
+  }
+
+  input.gsc-input {
+    @extend .govuk-input;
+
+    background-image: none !important;
+  }
+}
+
+button.gsc-search-button {
+  @extend .govuk-button;
+
+  margin-bottom: 0 !important;
+
+  svg {
+    display: none;
+  }
+
+  &:hover {
+    border-color: govuk-shade(govuk-colour("green"), 20%) !important;
+  }
+
+  &:after {
+    content: "Search";
+  }
+}
+
 a.gs-title {
   @include govuk-typography-common;
   @include govuk-link-decoration;

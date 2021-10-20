@@ -19,3 +19,5 @@ Turbolinks.start()
 
 import { initAll } from 'govuk-frontend'
 initAll()
+
+import "../javascript/cse";
