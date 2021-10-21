@@ -23,6 +23,10 @@ module ApplicationHelper
     }.merge(attributes)
   end
 
+  def analytics_tracking_id
+    ENV['GA_TRACKING_ID']
+  end
+
   # Use this to feature-flag code that should only run/show on test environments
   def dev_tools_enabled?
     Rails.env.development? || ENV.key?('DEV_TOOLS_ENABLED')
