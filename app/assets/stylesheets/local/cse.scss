@@ -97,10 +97,20 @@ div.gsc-results a.gs-title {
   padding-bottom: 15px;
 }
 
-.gsc-cursor-page {
-  border: 1px solid $govuk-border-colour;
+div.gsc-cursor-page {
+  border: 1px solid;
   padding: 8px;
   margin-right: 12px;
+
+  &:focus {
+    color: $govuk-focus-text-colour !important;
+    border-color: $govuk-focus-text-colour !important;
+    background-color: $govuk-focus-colour !important;
+  }
+
+  &.gsc-cursor-current-page {
+    border: 2px solid;
+  }
 }
 
 .gcsc-more-maybe-branding-root a {
