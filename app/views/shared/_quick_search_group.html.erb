@@ -5,7 +5,7 @@
 <ul class="govuk-list app--query-examples">
   <% quick_search_group.terms.each do |term| %>
     <li>
-      <a href="#gsc.q=<%= ERB::Util.url_encode(term) %>"><%= term %></a>
+      <%= link_to term, root_path(anchor: "gsc.q=#{term}"), class: 'ga-pageLink', data: { ga_category: 'common terms', ga_label: term } %>
     </li>
   <% end %>
 </ul>
