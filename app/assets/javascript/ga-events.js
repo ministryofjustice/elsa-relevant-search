@@ -43,16 +43,12 @@ gaEvents = {
     let self = this,
         $links = $(self.linkClass);
 
-    $links.on('click', function(e) {
-      let $el = $(this),
-          url = this.href;
-
-      e.preventDefault();
+    $links.on('click', function() {
+      let $el = $(this)
 
       gtag('event', 'click', {
         'event_category': $el.data('ga-category'),
-        'event_label': $el.data('ga-label'),
-        'event_callback': function(){ document.location = url }
+        'event_label': $el.data('ga-label')
       });
     });
   },
@@ -60,17 +56,14 @@ gaEvents = {
   // This function will not send to GA the query string, as frequently
   // this may contain personal identification or secure tokens.
   trackExternalLinks: function() {
-    $("a[rel^=external]").on('click', function(e) {
+    $("a[rel^=external]").on('click', function() {
       let $el = this,
           url = $el.href,
           event_url = url.replace($el.search, '');
 
-      e.preventDefault();
-
       gtag('event', 'click', {
         'event_category': 'outbound',
-        'event_label': event_url,
-        'event_callback': function(){ document.location = url }
+        'event_label': event_url
       });
     });
   }
