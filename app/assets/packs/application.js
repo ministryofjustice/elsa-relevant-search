@@ -21,3 +21,4 @@ import { initAll } from 'govuk-frontend'
 initAll()
 
 import "../javascript/cse";
+import "../javascript/ga-events";
