@@ -10,6 +10,11 @@ function fixStyling() {
       // so we can override them to give the controls a more govuk appearance
       $('input.gsc-input').removeAttr('style');
 
+      // Add input label for screen readers
+      if ($('label[for="gsc-i-id1"]').length === 0) {
+        $('<label class="govuk-label govuk-visually-hidden" for="gsc-i-id1">Enter your search terms</label>').insertBefore('input.gsc-input');
+      }
+
       // Apply the `govuk-link` class to all links in the search results
       $('.gsc-control-cse a, .gsc-control-cse [role="link"]').addClass('govuk-link');
     }, 5);
