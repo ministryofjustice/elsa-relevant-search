@@ -1,5 +1,9 @@
 // App-specific custom styles and overrides
 //
+.app--no-italic {
+  font-style: normal;
+}
+
 .app--js-enabled-show {
   display: none;
 }
