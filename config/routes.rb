@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'home/index'
 
+  get 'about/cookies'
+  get 'about/privacy'
+  get 'about/terms_and_conditions'
+
   resource :errors, only: [] do
     get :unhandled
     get :not_found
