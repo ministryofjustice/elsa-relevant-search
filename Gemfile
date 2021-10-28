@@ -6,7 +6,10 @@ ruby File.read('.ruby-version').chomp
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'pg'
 gem 'puma'
-gem 'sentry-raven', '~> 3.0'
+
+# Exceptions notifications
+gem 'sentry-ruby'
+gem 'sentry-rails'
 
 # Assets management
 gem 'webpacker', '~> 5.0'
