@@ -6,7 +6,7 @@ module ErrorHandling
     rescue_from Exception do |exception|
       raise if Rails.application.config.consider_all_requests_local
 
-      Raven.capture_exception(exception)
+      Sentry.capture_exception(exception)
 
       redirect_to unhandled_errors_path
     end
