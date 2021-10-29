@@ -20,3 +20,9 @@ ul.app--query-examples {
     margin-right: govuk-spacing(2);
   }
 }
+
+// This mitigates the input text jumping around on page loads while
+// the javascript takes over and style it properly.
+#google-custom-search {
+  min-height: 85px;
+}
