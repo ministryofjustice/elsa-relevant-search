@@ -21,4 +21,11 @@ RSpec.describe AboutController do
       expect(response).to render_template(:terms_and_conditions)
     end
   end
+
+  describe '#accessibility' do
+    it 'renders the expected page' do
+      get :accessibility
+      expect(response).to render_template(:accessibility)
+    end
+  end
 end
