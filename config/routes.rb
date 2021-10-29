@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'about/cookies'
   get 'about/privacy'
   get 'about/terms_and_conditions'
+  get 'about/accessibility'
 
   resource :errors, only: [] do
     get :unhandled
