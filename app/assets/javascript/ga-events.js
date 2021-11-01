@@ -12,9 +12,6 @@ gaEvents = {
       if ($(self.linkClass).length) {
         self.trackLinks();
       }
-      if ($("a[rel^=external]").length) {
-        self.trackExternalLinks();
-      }
     }
   },
 
@@ -49,21 +46,6 @@ gaEvents = {
       gtag('event', 'click', {
         'event_category': $el.data('ga-category'),
         'event_label': $el.data('ga-label')
-      });
-    });
-  },
-
-  // This function will not send to GA the query string, as frequently
-  // this may contain personal identification or secure tokens.
-  trackExternalLinks: function() {
-    $("a[rel^=external]").on('click', function() {
-      let $el = this,
-          url = $el.href,
-          event_url = url.replace($el.search, '');
-
-      gtag('event', 'click', {
-        'event_category': 'outbound',
-        'event_label': event_url
       });
     });
   }
