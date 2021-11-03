@@ -31,6 +31,9 @@ module ElsaRelevantSearch
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    # Survey in the phase banner (header)
+    config.x.survey_link = 'https://eu.surveymonkey.com/r/P6BKSSF'
+
     # Load the common search terms configuration
     config.x.common_terms = YAML.load_file(
       File.join(Rails.root, 'config', 'common_terms.yml')

@@ -3,7 +3,9 @@ en:
   layouts:
     phase_banner:
       feedback:
-        banner_html: This is a new service, <a href="%{link}" class="govuk-link govuk-link--no-visited-state">your feedback</a> will help us improve.
+        banner_html: |
+          This is a new service, <a href="%{link}" class="govuk-link govuk-link--no-visited-state ga-pageLink"
+          data-ga-category="header" data-ga-label="feedback link">your feedback</a> will help us improve.
     footer_links:
       header: Support links
       help: Help
