@@ -38,6 +38,24 @@ Or you can run specific tests as follows (refer to *lib/tasks/all_tests.rake* fo
 * `rake brakeman`
 * `rake rubocop`
 
+## Cucumber + Capybara features
+
+ChromeDriver is needed for the integration tests. It can be installed on Mac using Homebrew:  
+`brew install chromedriver` and then `xattr -d com.apple.quarantine /usr/local/bin/chromedriver`
+
+The features will run as part of the default rake task, but can also be run in any of these forms:
+
+* `bundle exec cucumber`
+* `bundle exec cucumber features/homepage.feature`
+
+Any of the files in the [features](features) directory can be run individually.
+
+By default Capybara will start a local Puma server on a random port, run features against that server, and kill the server once the features have finished.
+
+If you want to show the browser (useful to debug issues) prefix the commands like this:
+
+* `SHOW_BROWSER=1 bundle exec cucumber features/homepage.feature`
+
 ## Docker
 
 The application can be run inside a docker container. This will take care of the ruby environment, postgres database 

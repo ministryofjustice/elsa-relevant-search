@@ -40,6 +40,7 @@ end
 group :test do
   gem 'brakeman'
   gem 'capybara', '>= 3.26'
+  gem 'cucumber-rails', require: false
   gem 'rails-controller-testing'
   gem 'rubocop'
   gem 'rubocop-rspec'
