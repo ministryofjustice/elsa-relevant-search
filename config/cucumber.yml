@@ -1,0 +1,2 @@
+default: --format pretty --strict --tags 'not @wip' --publish-quiet features
+wip: --tags @wip:3 --wip --publish-quiet features
