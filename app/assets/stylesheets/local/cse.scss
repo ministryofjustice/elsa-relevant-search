@@ -66,6 +66,11 @@ button.gsc-search-button {
   }
 }
 
+// We hide the "About 1,000,000 results (0.58 seconds)" as it is irrelevant to our tool
+td.gsc-result-info-container div {
+  display: none;
+}
+
 div.gs-snippet {
   @extend .govuk-body;
 
