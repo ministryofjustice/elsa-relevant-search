@@ -1,4 +1,5 @@
 require 'selenium-webdriver'
+require 'capybara/screenshot/diff'
 require 'cucumber/rails'
 require 'dotenv/load'
 
@@ -12,6 +13,11 @@ Capybara.register_driver(:selenium_chrome) do |app|
 end
 
 Capybara.default_driver = :selenium_chrome
+
+# For taking screenshots and doing diffs
+include Capybara::Screenshot::Diff::TestMethods
+Capybara::Screenshot.hide_caret = true
+Capybara::Screenshot.save_path = 'features/screenshots'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any

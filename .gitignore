@@ -32,6 +32,9 @@
 yarn-debug.log*
 .yarn-integrity
 
+# Diff screenshots
+/features/screenshots/*.png~
+
 # Ignore user's individual .env files
 .env
 .env.test
