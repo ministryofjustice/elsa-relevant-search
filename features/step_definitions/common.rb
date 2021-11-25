@@ -64,6 +64,12 @@ And(/^I take a screenshot with name "([^"]*)" to detect changes$/) do |filename|
 
   # Check if there have been changes to the file since last commit
   # This command will return 1 if there are changes (so we fail the test) or 0 otherwise
-  `git diff --exit-code features/screenshots/#{filename}.png`
-  fail("[!] '#{filename}.png' screenshot has diffs. Make sure this is not a regression.") if $?.exitstatus != 0
+  # We disable this on CI because screenshots will be different as it runs on Ubuntu etc.
+  # However on CI we store as artifacts the screenshots for later inspection.
+  if ENV['CI_DISABLE_SCREENSHOT_DIFF']
+    warn('[!] Disabling screenshot diffs because we are running on CI.')
+  else
+    `git diff --exit-code features/screenshots/#{filename}.png`
+    fail("[!] '#{filename}.png' screenshot has diffs. Make sure this is not a regression.") if $?.exitstatus != 0
+  end
 end
