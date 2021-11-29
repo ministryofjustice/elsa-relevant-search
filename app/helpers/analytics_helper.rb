@@ -4,7 +4,7 @@ module AnalyticsHelper
   end
 
   def analytics_consent_cookie
-    cookies[Rails.configuration.x.cookies_policy_name]
+    cookies[Rails.configuration.x.cookies_consent_name]
   end
 
   def analytics_allowed?

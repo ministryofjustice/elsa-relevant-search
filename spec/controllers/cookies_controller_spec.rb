@@ -20,8 +20,8 @@ RSpec.describe CookiesController do
       let(:value) { 'accept' }
 
       it 'redirects to the correct place' do
-        expect(cookies_double['elsa_cookies_policy']).to eq({ expires: 1.year, value: 'accept' })
-        expect(flash[:cookies_policy_updated]).to eq('accept')
+        expect(cookies_double['elsa_cookies_consent']).to eq({ expires: 1.year, value: 'accept' })
+        expect(flash[:cookies_consent_updated]).to eq('accept')
         expect(response).to redirect_to('/')
       end
     end
@@ -30,8 +30,8 @@ RSpec.describe CookiesController do
       let(:value) { 'reject' }
 
       it 'redirects to the correct place' do
-        expect(cookies_double['elsa_cookies_policy']).to eq({ expires: 1.year, value: 'reject' })
-        expect(flash[:cookies_policy_updated]).to eq('reject')
+        expect(cookies_double['elsa_cookies_consent']).to eq({ expires: 1.year, value: 'reject' })
+        expect(flash[:cookies_consent_updated]).to eq('reject')
         expect(response).to redirect_to('/')
       end
     end
@@ -40,8 +40,8 @@ RSpec.describe CookiesController do
       let(:value) { 'foobar' }
 
       it 'redirects to the correct place' do
-        expect(cookies_double['elsa_cookies_policy']).to eq({ expires: 1.year, value: 'reject' })
-        expect(flash[:cookies_policy_updated]).to eq('reject')
+        expect(cookies_double['elsa_cookies_consent']).to eq({ expires: 1.year, value: 'reject' })
+        expect(flash[:cookies_consent_updated]).to eq('reject')
         expect(response).to redirect_to('/')
       end
     end

@@ -10,7 +10,7 @@ RSpec.describe AnalyticsHelper, type: :helper do
 
   describe '#analytics_consent_cookie' do
     it 'retrieves the analytics consent cookie' do
-      expect(controller.cookies).to receive(:[]).with('elsa_cookies_policy')
+      expect(controller.cookies).to receive(:[]).with('elsa_cookies_consent')
       helper.analytics_consent_cookie
     end
   end
@@ -18,7 +18,7 @@ RSpec.describe AnalyticsHelper, type: :helper do
   describe '#analytics_allowed?' do
     before do
       allow(ENV).to receive(:[]).with('GA_TRACKING_ID').and_return(tracking_id)
-      allow(controller.cookies).to receive(:[]).with('elsa_cookies_policy').and_return(value)
+      allow(controller.cookies).to receive(:[]).with('elsa_cookies_consent').and_return(value)
     end
 
     let(:tracking_id) { nil }

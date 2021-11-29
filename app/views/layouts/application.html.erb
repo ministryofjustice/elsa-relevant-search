@@ -17,8 +17,8 @@
     <%= render partial: 'layouts/cookie_banner' %>
   <% end %>
 
-  <% if flash['cookies_policy_updated'] %>
-    <%= render partial: 'layouts/cookie_banner_confirmation', locals: { result: flash['cookies_policy_updated'] } %>
+  <% if flash['cookies_consent_updated'] %>
+    <%= render partial: 'layouts/cookie_banner_confirmation', locals: { result: flash['cookies_consent_updated'] } %>
   <% end %>
 <% end %>
 

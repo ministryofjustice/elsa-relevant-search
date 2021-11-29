@@ -42,7 +42,7 @@ module ElsaRelevantSearch
     )
 
     # Cookies permission banner
-    config.x.cookies_policy_name = 'elsa_cookies_policy'.freeze
-    config.x.cookies_policy_expiration = 1.year
+    config.x.cookies_consent_name = 'elsa_cookies_consent'.freeze
+    config.x.cookies_consent_expiration = 1.year
   end
 end

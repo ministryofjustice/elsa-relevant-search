@@ -9,7 +9,7 @@ class CookiesController < ApplicationController
       value: accept_or_reject
     }
 
-    redirect_back fallback_location: root_path, flash: { cookies_policy_updated: accept_or_reject }
+    redirect_back fallback_location: root_path, flash: { cookies_consent_updated: accept_or_reject }
   end
 
   private
@@ -21,10 +21,10 @@ class CookiesController < ApplicationController
   end
 
   def cookie_name
-    Rails.configuration.x.cookies_policy_name
+    Rails.configuration.x.cookies_consent_name
   end
 
   def expiration
-    Rails.configuration.x.cookies_policy_expiration
+    Rails.configuration.x.cookies_consent_expiration
   end
 end
