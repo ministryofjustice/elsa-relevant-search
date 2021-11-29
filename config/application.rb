@@ -14,6 +14,8 @@ require "action_view/railtie"
 # require "action_cable/engine"
 require "rails/test_unit/railtie"
 
+require "active_support/core_ext/integer/time"
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -38,5 +40,9 @@ module ElsaRelevantSearch
     config.x.common_terms = YAML.load_file(
       File.join(Rails.root, 'config', 'common_terms.yml')
     )
+
+    # Cookies permission banner
+    config.x.cookies_policy_name = 'elsa_cookies_policy'.freeze
+    config.x.cookies_policy_expiration = 1.year
   end
 end
