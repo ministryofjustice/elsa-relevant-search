@@ -22,3 +22,4 @@ initAll()
 
 import "../javascript/cse";
 import "../javascript/ga-events";
+import "../javascript/cookie_banner";
