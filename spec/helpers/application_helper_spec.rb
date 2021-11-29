@@ -47,13 +47,6 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe '#analytics_tracking_id' do
-    it 'retrieves the environment variable' do
-      expect(ENV).to receive(:[]).with('GA_TRACKING_ID')
-      helper.analytics_tracking_id
-    end
-  end
-
   describe 'dev_tools_enabled?' do
     before do
       allow(Rails).to receive_message_chain(:env, :development?).and_return(development_env)

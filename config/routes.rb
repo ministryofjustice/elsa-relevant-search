@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'home/index'
 
-  get 'about/cookies'
   get 'about/privacy'
   get 'about/terms_and_conditions'
   get 'about/accessibility'
+
+  resource :cookies, only: [:show, :update]
 
   resource :errors, only: [] do
     get :unhandled

@@ -3,13 +3,23 @@
 <% content_for(:head) do %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <%= render partial: 'layouts/analytics' if analytics_tracking_id.present? %>
+  <%= render partial: 'layouts/analytics' if analytics_allowed? %>
 <% end %>
 
 <% content_for(:service_name) do %>
   <%= link_to service_name, root_path,
               class: 'govuk-header__link govuk-header__link--service-name ga-pageLink',
               data: { ga_category: 'header', ga_label: 'service name' }, id: 'header-service-name' %>
+<% end %>
+
+<% content_for(:cookie_banner) do %>
+  <% unless controller_name == 'cookies' || analytics_consent_cookie.present? %>
+    <%= render partial: 'layouts/cookie_banner' %>
+  <% end %>
+
+  <% if flash['cookies_consent_updated'] %>
+    <%= render partial: 'layouts/cookie_banner_confirmation', locals: { result: flash['cookies_consent_updated'] } %>
+  <% end %>
 <% end %>
 
 <% content_for(:phase_banner) do %>
