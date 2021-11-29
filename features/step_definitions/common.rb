@@ -34,6 +34,10 @@ When(/^I click the "([^"]*)" link$/) do |text|
   click_link(text)
 end
 
+When(/^I click the "([^"]*)" button$/) do |text|
+  click_button(text)
+end
+
 When(/^I click the search button$/) do
   click_button(class: 'gsc-search-button')
 end
@@ -44,6 +48,11 @@ end
 
 Then(/^I should get "([^"]*)" results$/) do |num|
   expect(page).to have_selector('a', class: %w(gs-title govuk-link), count: num)
+end
+
+And(/^I accept analytics cookies$/) do
+  step %[I click the "Accept analytics cookies" button]
+  step %[I click the "Hide this message" link]
 end
 
 And(/^I take a screenshot with name "([^"]*)" to detect changes$/) do |filename|
