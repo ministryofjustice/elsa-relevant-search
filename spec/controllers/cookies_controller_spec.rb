@@ -9,41 +9,20 @@ RSpec.describe CookiesController do
   end
 
   describe '#update' do
-    before do
-      allow(controller).to receive(:cookies).and_return(cookies_double)
-      post :update, params: { cookies: value }
-    end
+    let(:param_value) { CookieSettingsForm::CONSENT_ACCEPT }
 
-    let(:cookies_double) { {} }
+    # Note: there are more in deep tests in `spec/forms/cookie_settings_form_spec.rb`
+    it 'saves the form and redirects setting the flash' do
+      expect(
+        CookieSettingsForm
+      ).to receive(:new).with(
+        consent: param_value, cookies: an_instance_of(ActionDispatch::Cookies::CookieJar)
+      ).and_call_original
 
-    context 'for an `accept` value' do
-      let(:value) { 'accept' }
+      post :update, params: { cookies: param_value }
 
-      it 'redirects to the correct place' do
-        expect(cookies_double['elsa_cookies_consent']).to eq({ expires: 1.year, value: 'accept' })
-        expect(flash[:cookies_consent_updated]).to eq('accept')
-        expect(response).to redirect_to('/')
-      end
-    end
-
-    context 'for a `reject` value' do
-      let(:value) { 'reject' }
-
-      it 'redirects to the correct place' do
-        expect(cookies_double['elsa_cookies_consent']).to eq({ expires: 1.year, value: 'reject' })
-        expect(flash[:cookies_consent_updated]).to eq('reject')
-        expect(response).to redirect_to('/')
-      end
-    end
-
-    context 'for an unknown value' do
-      let(:value) { 'foobar' }
-
-      it 'redirects to the correct place' do
-        expect(cookies_double['elsa_cookies_consent']).to eq({ expires: 1.year, value: 'reject' })
-        expect(flash[:cookies_consent_updated]).to eq('reject')
-        expect(response).to redirect_to('/')
-      end
+      expect(flash[:cookies_consent_updated]).to eq(param_value)
+      expect(response).to redirect_to('/')
     end
   end
 end
