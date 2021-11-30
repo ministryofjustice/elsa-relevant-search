@@ -38,6 +38,10 @@ When(/^I click the "([^"]*)" button$/) do |text|
   click_button(text)
 end
 
+When(/^I click the radio button "([^"]*)"$/) do |text|
+  find('label', exact_text: text).click
+end
+
 When(/^I click the search button$/) do
   click_button(class: 'gsc-search-button')
 end
