@@ -1,4 +1,4 @@
-Feature: Cookies banner functionality
+Feature: Cookies consent functionality
   Background:
     When I visit "/"
     Then I should see "Cookies on Search information about legal problems"
@@ -23,3 +23,11 @@ Feature: Cookies banner functionality
     Then I should be on "/"
      And I should not see "You’ve rejected analytics cookies"
      And I should not see "Cookies on Search information about legal problems"
+
+  Scenario: Cookies page consent settings
+    When I click the "View cookies" link
+    Then I should be on "/cookies"
+     And I should see "Do you want to accept analytics cookies?"
+    When I click the radio button "Yes"
+     And I click the "Save cookie settings" button
+    Then I should see "You’ve set your cookie preferences."

@@ -17,9 +17,7 @@ import Turbolinks from "turbolinks"
 Rails.start()
 Turbolinks.start()
 
-import { initAll } from 'govuk-frontend'
-initAll()
-
+import "../javascript/govuk";
 import "../javascript/cse";
 import "../javascript/ga-events";
 import "../javascript/cookie_banner";
