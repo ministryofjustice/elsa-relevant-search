@@ -61,3 +61,6 @@ Style/HashTransformKeys:
 
 Style/HashTransformValues:
   Enabled: true
+
+Style/FetchEnvVar:
+  Enabled: false
